@@ -21,7 +21,7 @@ local clock are never used to record a clock event.
 | `backend/`           | ASP.NET Core solution                                                                     |
 | `frontend/`          | React app                                                                                 |
 | `docs/plans/`        | Approved work plans, `NN-short-name.md`                                                   |
-| `docs/claude-log.md` | Where Claude helped and where the developer corrected it                                  |
+| `docs/claude-log.md` | Where Claude helped and where I corrected it                                              |
 | `DECISIONS.md`       | Key decisions and why, edge cases and how they were handled, what was not done, known limitations |
 | `README.md`          | Local run instructions, including database setup                                          |
 
@@ -46,13 +46,15 @@ local clock are never used to record a clock event.
 
 1. **Plan first.** For any non-trivial change, propose a plan and wait for approval.
    Save the approved plan to `docs/plans/NN-short-name.md`.
-2. **Small steps.** After each step, show a short summary of what changed and a proposed
-   commit message.
+2. **Small steps.** After each step that adds or changes business logic, run the qa subagent
+   on that feature. Before proposing a commit, run the code-reviewer subagent on the diff and
+   fix BLOCKER/MAJOR findings. Then show a short summary of what changed, the review verdict,
+   and a proposed commit message.
 3. **Commit only on approval.** Commit and push only after explicit approval. Stage only
    the related files by path (never `git add .` or `git add -A`), then commit and push.
 4. **Commit messages.** Conventional Commits (`feat` / `fix` / `test` / `docs` /
    `refactor` / `chore`), imperative mood, short subject, one logical change per commit.
 5. **Flag decisions.** When a product or architecture decision comes up, say so explicitly
    so it can be recorded in `DECISIONS.md`. Do not decide silently.
-6. **Log corrections.** When I correct you, draft a short, specific entry for `docs/claude-log.md`: what you did, what I corrected, and why. Show it to me before saving.
+6. **Log corrections.** When I correct you, draft a short, specific entry for `docs/claude-log.md`: what you did, what I corrected, and why. Show it to me before saving. Write entries in my voice: 'I' is the developer, Claude is third person.
 
