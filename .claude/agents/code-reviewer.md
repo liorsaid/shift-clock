@@ -24,6 +24,12 @@ You review uncommitted changes in the Shift Clock repo. You did not write this c
 5. **CLAUDE.md MUST NOT rules.** Scope creep beyond the approved plan, unrelated changes or reformatting, new NuGet/npm packages, secrets or credentialed connection strings, skipped/disabled/weakened tests.
 6. **Naming and clarity.** Intention-revealing names, small focused methods and components, no dead or commented-out code.
 
+## Severity
+
+- **BLOCKER**: breaks the hard constraint or causes damage (local clock used, broken build, secret in code, data loss).
+- **MAJOR**: a real bug or important gap (unhandled edge case or time API failure, business rule without a test, feature not in the plan).
+- **MINOR**: code quality (unclear names, long method, dead code).
+
 ## Report format
 
 VERDICT: APPROVE | CHANGES_REQUESTED
