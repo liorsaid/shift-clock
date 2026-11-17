@@ -27,6 +27,10 @@ Claude helped plan the project: it confirmed live that TimeAPI.io's v1 endpoint 
 
 The webapi template's weather demo used `DateTime.Now`. It came from a terminal command, so the hook never saw it; Claude caught it and replaced it.
 
+## 2026-11-17 · Time format
+
+Claude planned a fixed format for the API's time, but the API returns 6 digits after the seconds, so real clock-ins could fail. I had it use .NET's built-in parsing and test with a real API response.
+
 ## 2026-11-17 · Time source review
 
 The qa subagent found a real bug: an unknown charset in the API response led to the wrong error. Claude fixed it. The qa subagent also added 52 tests, most of them repeats, so I cut them down.
