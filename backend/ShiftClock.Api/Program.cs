@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using ShiftClock.Api.Data;
 using ShiftClock.Api.Time;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +14,17 @@ builder.Services.AddOptions<TimeApiOptions>()
     .ValidateOnStart();
 builder.Services.AddHttpClient<ITimeSource, TimeApiTimeSource>((services, client) =>
     client.Timeout = services.GetRequiredService<IOptions<TimeApiOptions>>().Value.Timeout);
+builder.Services.AddDbContext<ShiftClockDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ShiftClock")));
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<ShiftClockDbContext>();
+    db.Database.Migrate();
+    DemoEmployees.AddIfEmpty(db);
+}
 
 app.Run();

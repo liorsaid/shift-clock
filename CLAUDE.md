@@ -30,6 +30,7 @@ Run from the repo root.
 - Restore tools and packages: `dotnet tool restore` and `npm ci --prefix frontend`
 - Build: `dotnet build backend/ShiftClock.slnx` and `npm --prefix frontend run build`
 - Test: `dotnet test backend/ShiftClock.slnx`
+- Add a migration: `dotnet ef migrations add <Name> --project backend/ShiftClock.Api`
 - Run the backend: `dotnet run --project backend/ShiftClock.Api` (http://localhost:5163)
 - Run the frontend: `npm --prefix frontend run dev` (http://localhost:5173, proxies `/api` to the backend)
 
