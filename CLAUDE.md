@@ -30,7 +30,7 @@ local clock are never used to record a clock event.
 - Clear, intention-revealing names.
 - Small, focused methods and components.
 - No dead or commented-out code.
-- Claude Code config files (CLAUDE.md, .claude/, docs/claude-log.md): simple, focused and clear.
+- Docs and Claude Code config (CLAUDE.md, .claude/, DECISIONS.md, README.md, docs/): simple, focused and clear. Describe the current state, not how it got there.
 
 ## MUST NOT
 
