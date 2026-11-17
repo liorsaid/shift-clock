@@ -1,16 +1,38 @@
-# PreToolUse hook for Edit/Write: blocks local clock reads in C# and TypeScript files.
+# PreToolUse hook for Edit/Write: blocks every local clock read.
+# The external time API is the only source of time. Duration timers (Stopwatch, performance.now()) stay allowed.
 $payload = [Console]::In.ReadToEnd() | ConvertFrom-Json
-$extension = [IO.Path]::GetExtension($payload.tool_input.file_path)
+$filePath = "$($payload.tool_input.file_path)" -replace '\\', '/'
 $newText = "$($payload.tool_input.content)`n$($payload.tool_input.new_string)"
 
-$localClockPattern = switch ($extension) {
-    '.cs'  { '\b(DateTime|DateTimeOffset)\.(Now|UtcNow)\b|\bTimeProvider\.System\b' }
-    '.ts'  { '\bDate\.now\s*\(|\bnew\s+Date\s*\(\s*\)' }
-    '.tsx' { '\bDate\.now\s*\(|\bnew\s+Date\s*\(\s*\)' }
+$browser = @(
+    '\bDate\.now\s*\('
+    '\bnew\s+Date\b(?!\s*\(\s*[^)\s])'
+    '(?<![\w.]|new\s+)Date\s*\('
+    '\bperformance\.timeOrigin\b'
+    '\bTemporal\.Now\b'
+)
+$server = @(
+    '\b(DateTime|DateTimeOffset)\.(Now|UtcNow|Today)\b'
+    '\bTimeProvider\.System\b'
+    '\bSystemClock\b'
+)
+$database = @(
+    '(?i)(?<![\w.])(GETDATE|GETUTCDATE|SYSDATETIME|SYSUTCDATETIME|SYSDATETIMEOFFSET)\s*\('
+    '(?i)\bCURRENT_(TIMESTAMP|DATE)\b'
+)
+
+if ($filePath -like '*/.claude/*') { exit 0 }
+
+$patterns = switch ([IO.Path]::GetExtension($filePath)) {
+    { $_ -in '.ts', '.tsx', '.js', '.jsx' } { $browser }
+    '.cs'  { $server + $database }
+    '.sql' { $database }
 }
 
-if ($localClockPattern -and $newText -match $localClockPattern) {
-    [Console]::Error.WriteLine("Clock event time must come from the external time API. See CLAUDE.md.")
-    exit 2
+foreach ($pattern in $patterns) {
+    if ($newText -cmatch $pattern) {
+        [Console]::Error.WriteLine("Clock event time must come from the external time API. See CLAUDE.md. Found: $($Matches[0].Trim())")
+        exit 2
+    }
 }
 exit 0

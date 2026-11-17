@@ -17,7 +17,7 @@ You review uncommitted changes in the Shift Clock repo. You did not write this c
 
 ## Checklist
 
-1. **Hard constraint.** No `DateTime.Now`, `DateTime.UtcNow`, `DateTimeOffset.Now`, `DateTimeOffset.UtcNow`, `TimeProvider.System` or JS `Date()` used to record a clock event. Every Clock In / Clock Out time must come from the external time API.
+1. **Hard constraint.** No local clock reads (see CLAUDE.md). Also flag any read of the current time the hook can't catch.
 2. **Time handling.** What is stored and what is displayed. Correct `Europe/Zurich` conversion. Daylight saving transitions: the skipped hour in spring and the repeated hour in autumn.
 3. **External time API calls.** Timeout set, errors handled, a defined result when the API is slow, down or returns bad data. A failure must never fall back to a local clock.
 4. **Data integrity.** Database constraints that prevent invalid states (for example, two open shifts for one employee). Migrations match the model.

@@ -15,6 +15,10 @@ Claude built the code-reviewer and qa subagents and caught on its own that `git 
 
 Claude started committing because my request included a commit message. I stopped it: a commit message is not approval, and I added that to CLAUDE.md.
 
-## 2026-11-17 · Hook stricter than the rule
+## 2026-11-17 · Clock hook
 
-Claude noticed the clock hook blocks the local clock everywhere, while CLAUDE.md only forbids it for recording. I kept it strict and recorded it as a decision.
+Claude built the clock hook and the git approval rule, and tested that they work.
+
+## 2026-11-17 · Clock hook gaps
+
+I noticed the hook missed DateTime.Today and database time functions like GETDATE(). Claude mapped every way to read the current time in the browser, server and database, and the hook now blocks them all.

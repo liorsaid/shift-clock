@@ -34,8 +34,7 @@ local clock are never used to record a clock event.
 
 ## MUST NOT
 
-- Never use `DateTime.Now`, `DateTime.UtcNow`, `DateTimeOffset.Now`, `DateTimeOffset.UtcNow`,
-  `TimeProvider.System` or JS `Date()` to record clock events.
+- The external time API is the only source of time. A hook blocks every local clock.
 - No secrets in the repo (keys, passwords, connection strings with credentials).
 - Do not add features that are not in the approved plan.
 - Do not modify, refactor or reformat code unrelated to the current task.
