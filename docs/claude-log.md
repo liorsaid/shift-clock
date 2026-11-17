@@ -30,3 +30,7 @@ The webapi template's weather demo used `DateTime.Now`. It came from a terminal 
 ## 2026-11-17 · Time source review
 
 The qa subagent found a real bug: an unknown charset in the API response led to the wrong error. Claude fixed it. The qa subagent also added 52 tests, most of them repeats, so I cut them down.
+
+## 2026-11-17 · Sign-in
+
+Claude hard-coded the error messages in the backend. I split the responsibility: the backend returns only a status code, and the frontend shows the right message for each case.
