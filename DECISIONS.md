@@ -25,6 +25,7 @@
 - **No adding a forgotten clock-in,** because its time wouldn't come from the API.
 - **No live timer,** because it would need the current time on screen all the time.
 - **No breaks, overtime or exports.**
+- **No automated frontend tests.** Screens are checked manually; the backend edge cases have automated tests.
 
 ## 4. Known Limitations
 - **One time service.** If TimeAPI.io is down, nobody can clock in or out.

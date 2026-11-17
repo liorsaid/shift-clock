@@ -23,12 +23,12 @@
 
 ## Testing
 - **Backend:** xUnit with a fake time source; integration tests against local SQL Server.
-- **Frontend:** Vitest + React Testing Library.
+- **Frontend:** checked manually, no automated tests.
 - qa after each business-logic step, code-reviewer before each commit.
 
 ## Work plan
 1. Product plan and decisions
-2. Scaffold backend, tests and frontend
+2. Scaffold backend, backend tests and frontend
 3. External time source
 4. Employee and shift data model
 5. Kiosk sign-in
