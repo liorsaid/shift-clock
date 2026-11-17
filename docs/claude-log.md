@@ -22,3 +22,7 @@ Claude built the clock hook and the git approval rule, and tested that they work
 ## 2026-11-17 · Clock hook gaps
 
 I noticed the hook missed DateTime.Today and database time functions like GETDATE(). Claude mapped every way to read the current time in the browser, server and database, and the hook now blocks them all.
+
+## 2026-11-17 · Planning
+
+Claude helped plan the project: it confirmed live that TimeAPI.io's v1 endpoint returns an explicit offset, designed the data model and edge cases, and its reviewer raised questions I had missed. For forgotten clock-outs I chose an always-available "I forgot" link with a "contact your manager" note.
