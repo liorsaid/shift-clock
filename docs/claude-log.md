@@ -9,7 +9,7 @@ Claude turned my notes into a clean CLAUDE.md. It copied my incomplete list of s
 
 ## 2026-11-17 · Subagents
 
-Claude built the code-reviewer and qa subagents and caught on its own that `git diff` misses new files. Its reviewer only checked the backend build, so I added an `npm run build` check for the frontend.
+Claude built the code-reviewer and qa subagents and caught on its own that `git diff` misses new files. The code-reviewer subagent only checked the backend build, so I added an `npm run build` check for the frontend.
 
 ## 2026-11-17 · Committed without approval
 
@@ -21,7 +21,7 @@ Claude built the clock hook and the git approval rule, and tested that they work
 
 ## 2026-11-17 · Planning
 
-Claude helped plan the project: it confirmed live that TimeAPI.io's v1 endpoint returns an explicit offset, designed the data model and edge cases, and the code-reviewer agent raised questions I had missed. For forgotten clock-outs I chose an always-available "I forgot" link with a "contact your manager" note.
+Claude helped plan the project: it confirmed live that TimeAPI.io's v1 endpoint returns an explicit offset, designed the data model and edge cases, and the code-reviewer subagent raised questions I had missed. For forgotten clock-outs I chose an always-available "I forgot" link with a "contact your manager" note.
 
 ## 2026-11-17 · Template clock read
 
@@ -29,4 +29,4 @@ The webapi template's weather demo used `DateTime.Now`. It came from a terminal 
 
 ## 2026-11-17 · Time source review
 
-The qa agent found a real bug: an unknown charset in the API response led to the wrong error. Claude fixed it. The qa agent also added 52 tests, most of them repeats, so I cut them down.
+The qa subagent found a real bug: an unknown charset in the API response led to the wrong error. Claude fixed it. The qa subagent also added 52 tests, most of them repeats, so I cut them down.
