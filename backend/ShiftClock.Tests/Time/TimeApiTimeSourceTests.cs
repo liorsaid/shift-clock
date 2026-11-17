@@ -144,10 +144,13 @@ public class TimeApiTimeSourceTests
     private static string Response(string dateTime, int utcOffsetSeconds = 3600, string timezone = "Europe/Zurich") =>
         JsonSerializer.Serialize(new { date_time = dateTime, timezone, utc_offset_seconds = utcOffsetSeconds });
 
-    private static TimeApiTimeSource Source(HttpMessageHandler handler, TimeSpan? timeout = null) =>
-        new(timeout is null ? new HttpClient(handler) : new HttpClient(handler) { Timeout = timeout.Value },
-            Options.Create(new TimeApiOptions { Url = Url }),
-            NullLogger<TimeApiTimeSource>.Instance);
+    private static TimeApiTimeSource Source(HttpMessageHandler handler, TimeSpan? timeout = null)
+    {
+        var client = new HttpClient(handler);
+        if (timeout is not null) client.Timeout = timeout.Value;
+
+        return new TimeApiTimeSource(client, Options.Create(new TimeApiOptions { Url = Url }), NullLogger<TimeApiTimeSource>.Instance);
+    }
 
     private static Task<DateTimeOffset> ReadAsync(string body) =>
         Source(StubHttpMessageHandler.Returning(HttpStatusCode.OK, body)).GetZurichNowAsync(CancellationToken.None);

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Net;
 
 namespace ShiftClock.Tests.Time;
@@ -14,7 +15,7 @@ public sealed class StubHttpMessageHandler(Func<CancellationToken, Task<HttpResp
         new(async cancellationToken =>
         {
             await Task.Delay(Timeout.Infinite, cancellationToken);
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            throw new UnreachableException();
         });
 
     public List<HttpRequestMessage> Requests { get; } = [];

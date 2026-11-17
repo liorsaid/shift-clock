@@ -15,7 +15,10 @@ builder.Services.AddOptions<TimeApiOptions>()
     .Validate(options => options.Timeout > TimeSpan.Zero, "TimeApi:Timeout must be positive.")
     .ValidateOnStart();
 builder.Services.AddHttpClient<ITimeSource, TimeApiTimeSource>((services, client) =>
-    client.Timeout = services.GetRequiredService<IOptions<TimeApiOptions>>().Value.Timeout);
+{
+    var options = services.GetRequiredService<IOptions<TimeApiOptions>>().Value;
+    client.Timeout = options.Timeout;
+});
 builder.Services.AddDbContext<ShiftClockDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ShiftClock")));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
