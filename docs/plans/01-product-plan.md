@@ -14,7 +14,7 @@
 
 ## Data model
 - **Employee:** Id, EmployeeNumber (unique), DisplayName, PinHash, IsActive.
-- **Shift:** Id, EmployeeId, ClockInAt, ClockInSource, ClockOutAt, ClockOutSource, IsMissingClockOut, RowVersion.
+- **Shift:** Id, EmployeeId, ClockInAt, ClockOutAt, IsMissingClockOut, RowVersion.
 - Times as `datetimeoffset`. A filtered unique index allows one open shift per employee; check constraints block invalid rows.
 
 ## Local run
