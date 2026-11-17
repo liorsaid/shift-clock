@@ -67,7 +67,7 @@ Run from the repo root.
    A commit message in my request is not approval.
 4. **Commit messages.** Conventional Commits (`feat` / `fix` / `test` / `docs` /
    `refactor` / `chore`), imperative mood, short subject, one logical change per commit.
-5. **Flag decisions.** When a product or architecture decision comes up, say so explicitly
-   so it can be recorded in `DECISIONS.md`. Do not decide silently.
+5. **Flag decisions.** When a key decision comes up (a real choice in product, architecture or security), say so;
+   don't decide silently. Record it in `DECISIONS.md` with one line on why.
 6. **Log help and corrections.** Draft an entry for `docs/claude-log.md` right away when I correct you, or when you catch something I missed. Skip routine work. Show it to me before saving. Write in my voice: 'I' is the developer, Claude is third person.
 

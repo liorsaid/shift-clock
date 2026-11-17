@@ -37,6 +37,6 @@ RESULTS: the exact command run, plus passed / failed / skipped counts.
 
 BUGS FOUND: what is wrong and how to reproduce it (the failing test name is enough when it reproduces the bug).
 
-DECISIONS TO RECORD: edge cases whose correct behavior needs a product decision (for example, whether "I forgot" is allowed a minute after clocking in).
+DECISIONS TO RECORD: edge cases whose correct behavior needs a key decision.
 
 Write "none" for an empty section.

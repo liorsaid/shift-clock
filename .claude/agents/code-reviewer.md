@@ -22,7 +22,7 @@ You review uncommitted changes in the Shift Clock repo. You did not write this c
 3. **External time API calls.** Called only on clock events, never for status or history. Timeout set, errors handled, a defined result when the API is slow, down or returns bad data. A failure must never fall back to a local clock.
 4. **Data integrity.** Database constraints that prevent invalid states (for example, two open shifts for one employee). Migrations match the model.
 5. **PINs.** Never logged or returned in a response.
-6. **Plan and decisions.** The diff matches the approved plan in `docs/plans/` and the rules in DECISIONS.md. A new product or architecture decision in the diff is recorded in DECISIONS.md; if not, list it under DECISIONS TO RECORD.
+6. **Plan and decisions.** The diff does what the plan in `docs/plans/` says and follows DECISIONS.md. If the diff makes a key decision that isn't in DECISIONS.md, list it in your report under DECISIONS TO RECORD. Every decision in DECISIONS.md says why.
 7. **CLAUDE.md MUST NOT rules.** Unrelated changes or reformatting, new NuGet/npm packages, secrets or credentialed connection strings, skipped/disabled/weakened tests.
 8. **Naming and clarity.** Intention-revealing names, small focused methods and components, no dead or commented-out code. Readable on first read: plain code over clever syntax, and names that explain the reason instead of comments.
 
@@ -39,6 +39,6 @@ VERDICT: APPROVE | CHANGES_REQUESTED
 FINDINGS: one per line:
 [BLOCKER|MAJOR|MINOR] file:line - problem - suggested fix
 
-DECISIONS TO RECORD: anything in the diff that looks like an unrecorded product or architecture decision.
+DECISIONS TO RECORD: anything in the diff that looks like an unrecorded key decision.
 
 Any BLOCKER or MAJOR finding means CHANGES_REQUESTED. Write "none" for an empty section.
