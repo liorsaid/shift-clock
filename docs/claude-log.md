@@ -14,3 +14,7 @@ Claude built the code-reviewer and qa subagents and caught on its own that `git 
 ## 2026-11-17 · Committed without approval
 
 Claude started committing because my request included a commit message. I stopped it: a commit message is not approval, and I added that to CLAUDE.md.
+
+## 2026-11-17 · Hook stricter than the rule
+
+Claude noticed the clock hook blocks the local clock everywhere, while CLAUDE.md only forbids it for recording. I kept it strict and recorded it as a decision.

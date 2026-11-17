@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git push *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"$CLAUDE_PROJECT_DIR/.claude/hooks/block-local-clock.ps1\""
+          }
+        ]
+      }
+    ]
+  }
+}
