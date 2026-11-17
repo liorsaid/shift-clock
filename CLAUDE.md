@@ -30,6 +30,7 @@ local clock are never used to record a clock event.
 - Clear, intention-revealing names.
 - Small, focused methods and components.
 - No dead or commented-out code.
+- Claude Code config files (CLAUDE.md, .claude/, docs/claude-log.md): simple, focused and clear.
 
 ## MUST NOT
 
@@ -52,9 +53,10 @@ local clock are never used to record a clock event.
    and a proposed commit message.
 3. **Commit only on approval.** Commit and push only after explicit approval. Stage only
    the related files by path (never `git add .` or `git add -A`), then commit and push.
+   A commit message in my request is not approval.
 4. **Commit messages.** Conventional Commits (`feat` / `fix` / `test` / `docs` /
    `refactor` / `chore`), imperative mood, short subject, one logical change per commit.
 5. **Flag decisions.** When a product or architecture decision comes up, say so explicitly
    so it can be recorded in `DECISIONS.md`. Do not decide silently.
-6. **Log corrections.** When I correct you, draft a short, specific entry for `docs/claude-log.md`: what you did, what I corrected, and why. Show it to me before saving. Write entries in my voice: 'I' is the developer, Claude is third person.
+6. **Log help and corrections.** Draft an entry for `docs/claude-log.md` right away when I correct you, or when you catch something I missed. Skip routine work. Show it to me before saving. Write in my voice: 'I' is the developer, Claude is third person.
 
