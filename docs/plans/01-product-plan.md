@@ -24,7 +24,6 @@
 ## Testing
 - **Backend:** xUnit with a fake time source; integration tests against local SQL Server.
 - **Frontend:** checked manually, no automated tests.
-- qa after each business-logic step, code-reviewer before each commit.
 
 ## Work plan
 1. Product plan and decisions
