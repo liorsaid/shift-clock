@@ -6,7 +6,7 @@ Employees and shifts stored in SQL Server, with the shift rules enforced by the 
 ## What's built
 - Employee, Shift and ShiftClockDbContext in `backend/ShiftClock.Api/Data/`.
 - The first migration, `InitialCreate`.
-- DemoEmployees: adds three demo employees when the Employee table is empty.
+- DemoEmployees: adds each demo employee whose number isn't in the database yet. Existing employees and their shifts are left as they are.
 - In Development, startup applies migrations and then runs DemoEmployees.
 - Connection strings for the app and the tests.
 - Database tests in `backend/ShiftClock.Tests/Data/`.

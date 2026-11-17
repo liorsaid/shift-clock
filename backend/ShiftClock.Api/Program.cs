@@ -35,7 +35,7 @@ if (app.Environment.IsDevelopment())
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<ShiftClockDbContext>();
     db.Database.Migrate();
-    DemoEmployees.AddIfEmpty(db);
+    DemoEmployees.AddMissing(db);
 }
 
 app.MapSignInEndpoints();

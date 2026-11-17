@@ -4,14 +4,19 @@ namespace ShiftClock.Api.Data;
 
 public static class DemoEmployees
 {
-    public static void AddIfEmpty(ShiftClockDbContext db)
+    public static void AddMissing(ShiftClockDbContext db)
     {
-        if (db.Employees.Any()) return;
-
-        db.Employees.AddRange(
+        Employee[] demoEmployees =
+        [
             Create("1001", "Anna Meier", "1234", isActive: true),
             Create("1002", "Luca Rossi", "5678", isActive: true),
-            Create("1003", "Sara Keller", "4321", isActive: false));
+            Create("1003", "Sara Keller", "4321", isActive: false),
+        ];
+
+        var existingNumbers = db.Employees.Select(e => e.EmployeeNumber).ToHashSet();
+        var missingEmployees = demoEmployees.Where(e => !existingNumbers.Contains(e.EmployeeNumber));
+
+        db.Employees.AddRange(missingEmployees);
         db.SaveChanges();
     }
 
