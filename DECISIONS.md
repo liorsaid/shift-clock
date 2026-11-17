@@ -9,6 +9,7 @@
 - **Kiosk sign-in with employee number and PIN.** The app runs on one shared device, and the employee is signed out after each clock in/out.
 - **History shows the last 30 shifts by month,** with a monthly total. It reads stored data only.
 - **Framework internals may use the system clock** (for example cookie expiry). They never record a clock event.
+- **The frontend owns all screen text.** The backend returns only status codes. Each side has one job, so a message can change without touching the backend.
 
 ## 2. Edge Cases
 - **Forgot to clock out:** "I forgot" marks the shift Missing clock-out instead of guessing a time. It's listed but not counted, and the employee can clock in again.

@@ -5,7 +5,7 @@ namespace ShiftClock.Tests.Data;
 
 public sealed class TestDatabase
 {
-    private const string ConnectionString =
+    public const string ConnectionString =
         "Server=localhost;Database=ShiftClock_Tests;Integrated Security=True;TrustServerCertificate=True";
 
     public TestDatabase()
@@ -17,4 +17,10 @@ public sealed class TestDatabase
 
     public ShiftClockDbContext CreateContext() =>
         new(new DbContextOptionsBuilder<ShiftClockDbContext>().UseSqlServer(ConnectionString).Options);
+}
+
+[CollectionDefinition(Name)]
+public sealed class DatabaseCollection : ICollectionFixture<TestDatabase>
+{
+    public const string Name = "Database";
 }

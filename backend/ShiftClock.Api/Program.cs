@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ShiftClock.Api.Data;
+using ShiftClock.Api.SignIn;
 using ShiftClock.Api.Time;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,12 @@ builder.Services.AddHttpClient<ITimeSource, TimeApiTimeSource>((services, client
     client.Timeout = services.GetRequiredService<IOptions<TimeApiOptions>>().Value.Timeout);
 builder.Services.AddDbContext<ShiftClockDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ShiftClock")));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = "ShiftClock.Session";
+        options.Cookie.SameSite = SameSiteMode.Strict;
+    });
 
 var app = builder.Build();
 
@@ -26,5 +34,7 @@ if (app.Environment.IsDevelopment())
     db.Database.Migrate();
     DemoEmployees.AddIfEmpty(db);
 }
+
+app.MapSignInEndpoints();
 
 app.Run();

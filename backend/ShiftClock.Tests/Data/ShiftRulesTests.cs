@@ -4,7 +4,8 @@ using ShiftClock.Api.Data;
 
 namespace ShiftClock.Tests.Data;
 
-public class ShiftRulesTests(TestDatabase database) : IClassFixture<TestDatabase>
+[Collection(DatabaseCollection.Name)]
+public class ShiftRulesTests(TestDatabase database)
 {
     private static readonly DateTimeOffset Morning = Time("2026-11-17T08:00:00+01:00");
     private static readonly DateTimeOffset Evening = Time("2026-11-17T17:00:00+01:00");
