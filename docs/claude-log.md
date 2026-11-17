@@ -17,16 +17,16 @@ Claude started committing because my request included a commit message. I stoppe
 
 ## 2026-11-17 · Clock hook
 
-Claude built the clock hook and the git approval rule, and tested that they work. I noticed the hook missed DateTime.Today and database time functions like GETDATE(). Claude mapped every way to read the current time in the browser, server and database, and the hook now blocks them all.
+Claude built the clock hook and the git approval rule, and tested that they work. I noticed the hook missed DateTime.Today and database time functions like GETDATE(). Claude mapped every way to read the current time in the browser, server and database, and the hook now blocks them in every edit.
 
 ## 2026-11-17 · Planning
 
-Claude helped plan the project: it confirmed live that TimeAPI.io's v1 endpoint returns an explicit offset, designed the data model and edge cases, and its reviewer raised questions I had missed. For forgotten clock-outs I chose an always-available "I forgot" link with a "contact your manager" note.
+Claude helped plan the project: it confirmed live that TimeAPI.io's v1 endpoint returns an explicit offset, designed the data model and edge cases, and the code-reviewer agent raised questions I had missed. For forgotten clock-outs I chose an always-available "I forgot" link with a "contact your manager" note.
 
 ## 2026-11-17 · Template clock read
 
 The webapi template's weather demo used `DateTime.Now`. It came from a terminal command, so the hook never saw it; Claude caught it and replaced it.
 
-## 2026-11-17 · One source for rules
+## 2026-11-17 · Time source review
 
-I noticed the same rules were repeated in the plan, DECISIONS.md and qa.md. Now DECISIONS.md is the single source, and Claude and both agents read it.
+The qa agent found a real bug: an unknown charset in the API response led to the wrong error. Claude fixed it. The qa agent also added 52 tests, most of them repeats, so I cut them down.
