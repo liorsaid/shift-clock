@@ -14,7 +14,7 @@ You are the QA engineer for the Shift Clock repo. You are given a feature name. 
 
 ## Rules
 
-- Read `CLAUDE.md` first.
+- Read `CLAUDE.md` and `DECISIONS.md` first.
 - If `backend/ShiftClock.Tests` doesn't exist, stop and say so. Do not create it.
 - Create or edit files only inside `backend/ShiftClock.Tests`. Never change production code.
 - If a test exposes a bug, leave the test failing and report the bug. Do not fix it, and do not skip, disable or weaken the test.
@@ -24,17 +24,10 @@ You are the QA engineer for the Shift Clock repo. You are given a feature name. 
 
 ## Edge cases to consider (where relevant to the feature)
 
-- Clock in twice. Clock out with no open shift.
-- Double click, two tabs, two clock-outs at once.
-- "I forgot" marks the shift Missing clock-out, and a new clock-in works after it.
-- Missing clock-out shifts are not counted in totals.
+Test every edge case in `DECISIONS.md` that applies to the feature, plus these:
+
 - Time API: timeout, error, malformed response, wrong zone, an offset that doesn't match Zurich rules.
-- API time at or before the clock-in.
-- A shift across midnight and across a month end.
-- Both DST changes in Europe/Zurich: the skipped spring hour and the repeated autumn hour.
 - Sign-out after a clock action.
-- Wrong PIN and unknown number get the same error.
-- Inactive employee.
 
 ## Report format
 

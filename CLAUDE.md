@@ -4,9 +4,7 @@
 
 Shift Clock is a time & attendance system where employees clock in and clock out of shifts.
 
-**Hard constraint:** every Clock In / Clock Out is based on the time received from an
-external time API, in the `Europe/Zurich` time zone. The browser clock and the server's
-local clock are never used to record a clock event.
+**Hard constraint:** every Clock In / Clock Out uses the time from an external time API, in the `Europe/Zurich` time zone. Never the browser clock or the server's local clock.
 
 ## Stack & environment
 
@@ -25,6 +23,16 @@ local clock are never used to record a clock event.
 | `DECISIONS.md`       | Key decisions and why, edge cases and how they were handled, what was not done, known limitations |
 | `README.md`          | Local run instructions, including database setup                                          |
 
+## Commands
+
+Run from the repo root.
+
+- Restore tools and packages: `dotnet tool restore` and `npm ci --prefix frontend`
+- Build: `dotnet build backend/ShiftClock.slnx` and `npm --prefix frontend run build`
+- Test: `dotnet test backend/ShiftClock.slnx`
+- Run the backend: `dotnet run --project backend/ShiftClock.Api` (http://localhost:5163)
+- Run the frontend: `npm --prefix frontend run dev` (http://localhost:5173, proxies `/api` to the backend)
+
 ## Code quality
 
 - Clear, intention-revealing names.
@@ -34,7 +42,7 @@ local clock are never used to record a clock event.
 
 ## MUST NOT
 
-- The external time API is the only source of time. A hook blocks every local clock.
+- Never read a local clock to record a clock event (for example `DateTime.Now`, `Date.now()`, `GETDATE()`).
 - No secrets in the repo (keys, passwords, connection strings with credentials).
 - Do not add features that are not in the approved plan.
 - Do not modify, refactor or reformat code unrelated to the current task.
@@ -46,12 +54,13 @@ local clock are never used to record a clock event.
 
 1. **Plan first.** For any non-trivial change, propose a plan and wait for approval.
    Save the approved plan to `docs/plans/NN-short-name.md`.
+   Before implementing, read DECISIONS.md together with the plan.
 2. **Small steps.** After each step that adds or changes business logic, run the qa subagent
    on that feature. Before proposing a commit, run the code-reviewer subagent on the diff and
    fix BLOCKER/MAJOR findings. Then show a short summary of what changed, the review verdict,
    and a proposed commit message.
 3. **Commit only on approval.** Commit and push only after explicit approval. Stage only
-   the related files by path (never `git add .` or `git add -A`), then commit and push.
+   the related files by path (never `git add .` or `git add -A`).
    A commit message in my request is not approval.
 4. **Commit messages.** Conventional Commits (`feat` / `fix` / `test` / `docs` /
    `refactor` / `chore`), imperative mood, short subject, one logical change per commit.
