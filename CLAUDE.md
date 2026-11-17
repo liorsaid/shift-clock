@@ -69,5 +69,5 @@ Run from the repo root.
    `refactor` / `chore`), imperative mood, short subject, one logical change per commit.
 5. **Flag decisions.** When a key decision comes up (a real choice in product, architecture or security), say so;
    don't decide silently. Record it in `DECISIONS.md` with one line on why.
-6. **Log help and corrections.** Draft an entry for `docs/claude-log.md` right away when I correct you, or when you catch something I missed. Skip routine work. Show it to me before saving. Write in my voice: 'I' is the developer, Claude is third person.
+6. **Log help and corrections.** Draft an entry for `docs/claude-log.md` right away when I correct you, or when you catch something important I missed. Skip routine work. Check for one at two points in every step: after I review the plan, and in the end-of-step summary. Show it to me before saving. Write in my voice: 'I' is the developer, Claude is third person.
 
