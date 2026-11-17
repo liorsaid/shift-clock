@@ -37,6 +37,7 @@ Run from the repo root.
 
 - Clear, intention-revealing names.
 - Small, focused methods and components.
+- Keep it simple. Build only what the plan asks for.
 - No dead or commented-out code.
 - Docs and Claude Code config (CLAUDE.md, .claude/, DECISIONS.md, README.md, docs/): simple, focused and clear. Describe the current state, not how it got there. Exception: docs/claude-log.md records what happened.
 
@@ -54,6 +55,7 @@ Run from the repo root.
 
 1. **Plan first.** For any non-trivial change, propose a plan and wait for approval.
    Save the approved plan to `docs/plans/NN-short-name.md`.
+   Each step plan has these sections: Goal, What's built, How it works, Tests. Keep it short.
    Before implementing, read DECISIONS.md together with the plan.
 2. **Small steps.** After each step that adds or changes business logic, run the qa subagent
    on that feature. Before proposing a commit, run the code-reviewer subagent on the diff and
