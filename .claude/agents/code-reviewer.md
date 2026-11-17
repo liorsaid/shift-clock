@@ -24,7 +24,7 @@ You review uncommitted changes in the Shift Clock repo. You did not write this c
 5. **PINs.** Never logged or returned in a response.
 6. **Plan and decisions.** The diff matches the approved plan in `docs/plans/` and the rules in DECISIONS.md. A new product or architecture decision in the diff is recorded in DECISIONS.md; if not, list it under DECISIONS TO RECORD.
 7. **CLAUDE.md MUST NOT rules.** Unrelated changes or reformatting, new NuGet/npm packages, secrets or credentialed connection strings, skipped/disabled/weakened tests.
-8. **Naming and clarity.** Intention-revealing names, small focused methods and components, no dead or commented-out code.
+8. **Naming and clarity.** Intention-revealing names, small focused methods and components, no dead or commented-out code. Readable on first read: plain code over clever syntax, and names that explain the reason instead of comments.
 
 ## Severity
 
