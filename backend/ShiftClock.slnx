@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="ShiftClock.Api/ShiftClock.Api.csproj" />
+  <Project Path="ShiftClock.Tests/ShiftClock.Tests.csproj" />
+</Solution>
