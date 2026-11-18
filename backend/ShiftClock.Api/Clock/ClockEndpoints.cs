@@ -12,11 +12,23 @@ public static class ClockEndpoints
 
     public sealed record ClockOutResponse(DateTimeOffset ClockInAt, DateTimeOffset ClockOutAt);
 
+    public sealed record StatusResponse(DateTimeOffset? OnShiftSince);
+
     public static void MapClockEndpoints(this IEndpointRouteBuilder app)
     {
+        app.MapGet("/api/status", GetStatusAsync);
         app.MapPost("/api/clock-in", ClockInAsync);
         app.MapPost("/api/clock-out", ClockOutAsync);
         app.MapPost("/api/forgot-clock-out", ForgotClockOutAsync);
+    }
+
+    private static async Task<IResult> GetStatusAsync(HttpContext http, ShiftClockDbContext db)
+    {
+        var employee = await SignedInEmployee.FindActiveAsync(http, db);
+        if (employee is null) return await SignedInEmployee.SignOutAndRejectAsync(http);
+
+        var openShift = await FindOpenShiftAsync(db, employee);
+        return Results.Ok(new StatusResponse(openShift?.ClockInAt));
     }
 
     private static async Task<IResult> ClockInAsync(HttpContext http, ShiftClockDbContext db, ITimeSource timeSource)

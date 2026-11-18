@@ -42,3 +42,7 @@ Claude hard-coded the error messages in the backend. I split the responsibility:
 ## 2026-11-18 · Clock in and out
 
 Claude planned to turn every database error on clock-in into "already clocked in". I limited it to the one-open-shift rule, so a real bug still shows as an error. The qa subagent kept adding repeated tests, so I made "no repeated tests" a permanent qa rule.
+
+## 2026-11-18 · Status and history
+
+Claude planned the last 30 shifts with totals rounded to minutes, so the oldest month could be partial. I changed it to one full month at a time with exact totals in seconds.

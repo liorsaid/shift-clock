@@ -3,8 +3,8 @@
 ## Product
 - **Kiosk sign-in:** employee number + PIN on a shared device.
 - **Sign-out:** the server signs out after each clock action; the UI after 30s idle.
-- **Clock tab:** status (*Off shift* / *On shift since 08:02*), Clock In / Clock Out button, and an "I forgot to clock out earlier" link while a shift is open.
-- **My shifts tab:** last 30 shifts by Zurich month with monthly totals. Missing clock-out shifts are listed, not counted, with "Please contact your manager to approve your hours."
+- **Clock tab:** status (*Off shift* / *On shift since Mon 17 Nov, 08:02*), Clock In / Clock Out button, and an "I forgot to clock out earlier" link while a shift is open.
+- **My shifts tab:** one Zurich month at a time, with arrows to move between months, opening on the newest month with shifts, with the month's total. Missing clock-out shifts are listed, not counted, with "Please contact your manager to approve your hours."
 - All times shown in Europe/Zurich.
 
 ## Time API

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ShiftClock.Api.Clock;
 using ShiftClock.Api.Data;
+using ShiftClock.Api.History;
 using ShiftClock.Api.SignIn;
 using ShiftClock.Api.Time;
 
@@ -41,5 +42,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapSignInEndpoints();
 app.MapClockEndpoints();
+app.MapHistoryEndpoints();
 
 app.Run();

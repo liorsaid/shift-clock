@@ -11,9 +11,11 @@
 - **The sign-in cookie is protected** (HttpOnly, SameSite=Strict), so no other code or website can steal or use an employee's session.
 - **Framework internals may use the system clock** (for example cookie expiry), since they never record a clock event.
 - **The frontend owns all screen text.** The backend returns only status codes. Each side has one job, so a message can change without touching the backend.
+- **My shifts shows one full month at a time,** starting from the newest month with shifts, so each total is complete, and it needs no current date and no extra call to the time API.
 
 ## 2. Edge Cases
 - **Forgot to clock out:** "I forgot" marks the shift Missing clock-out instead of guessing a time. It's listed but not counted, and the employee stays signed in to clock in again.
+- **Current shift in history:** it has no clock-out time yet, so it's listed but not counted.
 - **Double click, two tabs, or two clock-outs at once:** the second request is rejected.
 - **Clock in twice, or clock out with no open shift:** a clear error, and nothing changes.
 - **Time API down or returns bad data:** a clear error. Status and history still work.
