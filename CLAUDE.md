@@ -14,14 +14,16 @@ Shift Clock is a time & attendance system where employees clock in and clock out
 
 ## Repo layout
 
-| Path                 | Purpose                                                                                   |
-|----------------------|-------------------------------------------------------------------------------------------|
-| `backend/`           | ASP.NET Core solution                                                                     |
-| `frontend/`          | React app                                                                                 |
-| `docs/plans/`        | Approved work plans, `NN-short-name.md`                                                   |
-| `docs/claude-log.md` | Where Claude helped and where I corrected it                                              |
-| `DECISIONS.md`       | Key decisions and why, edge cases and how they were handled, what was not done, known limitations |
-| `README.md`          | Local run instructions, including database setup                                          |
+| Path                        | Purpose                                                                                           |
+|-----------------------------|---------------------------------------------------------------------------------------------------|
+| `backend/`                  | ASP.NET Core solution                                                                             |
+| `backend/ShiftClock.Api/`   | One folder per feature: Time, Data, SignIn, Clock, History                                        |
+| `backend/ShiftClock.Tests/` | Tests, in the same feature folders                                                                |
+| `frontend/`                 | React app                                                                                         |
+| `docs/plans/`               | Approved work plans, `NN-short-name.md`                                                           |
+| `docs/claude-log.md`        | Where Claude helped and where I corrected it                                                      |
+| `DECISIONS.md`              | Key decisions and why, edge cases and how they were handled, what was not done, known limitations |
+| `README.md`                 | Local run instructions, including database setup                                                  |
 
 ## Commands
 
@@ -38,6 +40,7 @@ Run from the repo root.
 
 - Clear, intention-revealing names.
 - Small, focused methods and components.
+- Plain code over clever syntax. Names explain the reason; no comments.
 - Keep it simple. Build only what the plan asks for.
 - No dead or commented-out code.
 - Docs and Claude Code config (CLAUDE.md, .claude/, DECISIONS.md, README.md, docs/): simple, focused and clear. Describe the current state, not how it got there. Exception: docs/claude-log.md records what happened.
