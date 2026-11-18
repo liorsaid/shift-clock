@@ -1,9 +1,13 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace ShiftClock.Api.Data;
 
 public class ShiftClockDbContext(DbContextOptions<ShiftClockDbContext> options) : DbContext(options)
 {
+    private const string OneOpenShiftPerEmployeeIndex = "IX_Shifts_OneOpenShiftPerEmployee";
+    private static readonly int[] DuplicateKeyErrorNumbers = [2601, 2627];
+
     public DbSet<Employee> Employees => Set<Employee>();
 
     public DbSet<Shift> Shifts => Set<Shift>();
@@ -25,7 +29,7 @@ public class ShiftClockDbContext(DbContextOptions<ShiftClockDbContext> options) 
             shift.HasIndex(s => s.EmployeeId)
                 .IsUnique()
                 .HasFilter("[ClockOutAt] IS NULL AND [IsMissingClockOut] = 0")
-                .HasDatabaseName("IX_Shifts_OneOpenShiftPerEmployee");
+                .HasDatabaseName(OneOpenShiftPerEmployeeIndex);
             shift.ToTable(table =>
             {
                 table.HasCheckConstraint("CK_Shifts_ClockOutAfterClockIn", "[ClockOutAt] IS NULL OR [ClockOutAt] > [ClockInAt]");
@@ -33,4 +37,9 @@ public class ShiftClockDbContext(DbContextOptions<ShiftClockDbContext> options) 
             });
         });
     }
+
+    public static bool IsOneOpenShiftViolation(DbUpdateException exception) =>
+        exception.InnerException is SqlException sqlException
+        && DuplicateKeyErrorNumbers.Contains(sqlException.Number)
+        && sqlException.Message.Contains(OneOpenShiftPerEmployeeIndex);
 }

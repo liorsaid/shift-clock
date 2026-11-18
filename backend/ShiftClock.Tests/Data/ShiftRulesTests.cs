@@ -19,8 +19,9 @@ public class ShiftRulesTests(TestDatabase database)
         var employee = await database.AddEmployeeAsync();
         await AddShiftAsync(new Shift { EmployeeId = employee.Id, ClockInAt = Morning });
 
-        await Assert.ThrowsAsync<DbUpdateException>(() =>
+        var exception = await Assert.ThrowsAsync<DbUpdateException>(() =>
             AddShiftAsync(new Shift { EmployeeId = employee.Id, ClockInAt = Evening }));
+        Assert.True(ShiftClockDbContext.IsOneOpenShiftViolation(exception));
     }
 
     [Fact]
@@ -74,7 +75,8 @@ public class ShiftRulesTests(TestDatabase database)
         await db.SaveChangesAsync();
         db.Employees.Add(new Employee { EmployeeNumber = employeeNumber, DisplayName = "Second", IsActive = true });
 
-        await Assert.ThrowsAsync<DbUpdateException>(() => db.SaveChangesAsync());
+        var exception = await Assert.ThrowsAsync<DbUpdateException>(() => db.SaveChangesAsync());
+        Assert.False(ShiftClockDbContext.IsOneOpenShiftViolation(exception));
     }
 
     [Theory]

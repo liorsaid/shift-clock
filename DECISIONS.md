@@ -13,7 +13,7 @@
 - **The frontend owns all screen text.** The backend returns only status codes. Each side has one job, so a message can change without touching the backend.
 
 ## 2. Edge Cases
-- **Forgot to clock out:** "I forgot" marks the shift Missing clock-out instead of guessing a time. It's listed but not counted, and the employee can clock in again.
+- **Forgot to clock out:** "I forgot" marks the shift Missing clock-out instead of guessing a time. It's listed but not counted, and the employee stays signed in to clock in again.
 - **Double click, two tabs, or two clock-outs at once:** the second request is rejected.
 - **Clock in twice, or clock out with no open shift:** a clear error, and nothing changes.
 - **Time API down or returns bad data:** a clear error. Status and history still work.

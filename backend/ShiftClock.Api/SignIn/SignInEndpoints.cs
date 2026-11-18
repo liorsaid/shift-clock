@@ -44,22 +44,10 @@ public static class SignInEndpoints
 
     private static async Task<IResult> GetSignedInEmployeeAsync(HttpContext http, ShiftClockDbContext db)
     {
-        var employee = await FindSignedInEmployeeAsync(http, db);
-        if (employee is null || !employee.IsActive)
-        {
-            await http.SignOutAsync();
-            return Results.Unauthorized();
-        }
+        var employee = await SignedInEmployee.FindActiveAsync(http, db);
+        if (employee is null) return await SignedInEmployee.SignOutAndRejectAsync(http);
 
         return Results.Ok(ToResponse(employee));
-    }
-
-    private static async Task<Employee?> FindSignedInEmployeeAsync(HttpContext http, ShiftClockDbContext db)
-    {
-        var signedInId = http.User.FindFirstValue(ClaimTypes.NameIdentifier);
-        if (!int.TryParse(signedInId, out var employeeId)) return null;
-
-        return await db.Employees.FindAsync(employeeId);
     }
 
     private static bool CheckPinWithoutRevealingUnknownNumbers(Employee? employee, string? pin)
