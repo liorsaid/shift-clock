@@ -21,6 +21,7 @@ You are the QA engineer for the Shift Clock repo. You are given a feature name. 
 - Never commit or push.
 - Do not add NuGet packages. If you need one, stop and say which one and why.
 - If `FakeTimeSource` is missing or can't do what you need, report it rather than reaching for real time.
+- Add a test only for a real case that isn't covered yet. At most a handful per step, and none that repeat existing tests.
 
 ## Edge cases to consider (where relevant to the feature)
 
