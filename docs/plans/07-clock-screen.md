@@ -67,3 +67,5 @@ Manual checks in the browser, with the backend and frontend running and the demo
 9. Double-tap Clock In: one clock-in, no error.
 10. Restart the backend with `$env:TimeApi__Url = 'https://timeapi.invalid/'`, then Clock In: the time service message, still signed in, still off shift.
 11. Wait 30 seconds without touching anything: back to the sign-in screen with "You were signed out after 30 seconds without activity."
+12. Sign out: only "You're signed out." for 3 seconds, then an empty sign-in screen.
+13. Stop the backend, then Sign out: "Something went wrong", still signed in.
