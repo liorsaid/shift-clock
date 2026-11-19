@@ -17,7 +17,7 @@ All in `frontend/src/`, no new packages:
 ## How it works
 **Opening the app.** It calls `GET /api/me`. 200 shows the signed-in screen; anything else shows the sign-in screen.
 
-**Sign-in screen.** Employee number, PIN and a Sign in button. If a field isn't valid, a short message shows under it, and Sign in stays disabled. Typing clears a sign-in error.
+**Sign-in screen.** Employee number, PIN and a Sign in button. If a field isn't valid, a short message shows under it, and Sign in stays disabled. Typing in either field clears any message on the screen, so nothing from the last employee stays.
 
 **Signed-in screen.** "Signed in as Anna Meier", a Sign out button, and two tabs: Clock (open first) and My shifts (empty for now). After 30 seconds without a tap or key press, the app signs out.
 
@@ -69,3 +69,4 @@ Manual checks in the browser, with the backend and frontend running and the demo
 11. Wait 30 seconds without touching anything: back to the sign-in screen with "You were signed out after 30 seconds without activity."
 12. Sign out: only "You're signed out." for 3 seconds, then an empty sign-in screen.
 13. Stop the backend, then Sign out: "Something went wrong", still signed in.
+14. After the idle sign-out message, type in either field: the message goes away.

@@ -17,6 +17,7 @@ export function SignInScreen({ message, onSignedIn }: Props) {
   const [employeeNumber, setEmployeeNumber] = useState('')
   const [pin, setPin] = useState('')
   const [hasLeftPin, setHasLeftPin] = useState(false)
+  const [lastEmployeeMessage, setLastEmployeeMessage] = useState(message)
   const [error, setError] = useState('')
   const [isSending, setIsSending] = useState(false)
 
@@ -25,6 +26,11 @@ export function SignInScreen({ message, onSignedIn }: Props) {
   const isPinStillBeingTyped = /^\d{1,3}$/.test(pin) && !hasLeftPin
   const showEmployeeNumberError = employeeNumber !== '' && !isEmployeeNumberValid
   const showPinError = pin !== '' && !isPinValid && !isPinStillBeingTyped
+
+  function clearMessages() {
+    setLastEmployeeMessage('')
+    setError('')
+  }
 
   async function handleSubmit(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -43,7 +49,7 @@ export function SignInScreen({ message, onSignedIn }: Props) {
     <main className="screen">
       <h1>Shift Clock</h1>
       <p className={error ? 'message error' : 'message'} role="status">
-        {error || message}
+        {error || lastEmployeeMessage}
       </p>
       <form onSubmit={handleSubmit}>
         <label>
@@ -54,7 +60,7 @@ export function SignInScreen({ message, onSignedIn }: Props) {
             value={employeeNumber}
             onChange={(event) => {
               setEmployeeNumber(event.target.value)
-              setError('')
+              clearMessages()
             }}
           />
           {showEmployeeNumberError && <span className="error">{messages.employeeNumberNotDigits}</span>}
@@ -68,7 +74,7 @@ export function SignInScreen({ message, onSignedIn }: Props) {
             value={pin}
             onChange={(event) => {
               setPin(event.target.value)
-              setError('')
+              clearMessages()
             }}
             onFocus={() => setHasLeftPin(false)}
             onBlur={() => setHasLeftPin(true)}
