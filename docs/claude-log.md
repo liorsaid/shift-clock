@@ -46,3 +46,11 @@ Claude planned to turn every database error on clock-in into "already clocked in
 ## 2026-11-18 · Status and history
 
 Claude planned the last 30 shifts with totals rounded to minutes, so the oldest month could be partial. I changed it to one full month at a time with exact totals in seconds.
+
+## 2026-11-18 · Clock screen
+
+The code-reviewer subagent caught that when sign-out failed on the server, the screen still went back to sign-in, so a page reload could sign the last employee back in. Claude fixed it to stay signed in and show an error.
+
+## 2026-11-18 · Edits through PowerShell
+
+Claude changed code files with PowerShell string replacement, which skips the clock hook. I stopped it and added a rule to CLAUDE.md: code changes go only through the edit tool, so the hook checks every one.

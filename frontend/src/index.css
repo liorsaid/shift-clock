@@ -1,0 +1,67 @@
+:root {
+  font: 20px system-ui, sans-serif;
+}
+
+button,
+input {
+  font: inherit;
+  padding: 0.5rem;
+}
+
+.screen {
+  max-width: 32rem;
+  margin: 3rem auto;
+}
+
+form,
+label,
+.clock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.message {
+  min-height: 1.5em;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.primary {
+  padding: 1rem;
+  font-size: 1.5rem;
+  color: white;
+  background: #2563eb;
+  border: none;
+}
+
+.primary:disabled {
+  background: #9db4e8;
+}
+
+.signed-in,
+.tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabs button {
+  flex: 1;
+}
+
+.active {
+  color: white;
+  background: #2563eb;
+}
+
+.status {
+  font-weight: bold;
+}
+
+.link {
+  background: none;
+  border: none;
+  text-decoration: underline;
+}
