@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { clockIn, clockOut, forgotClockOut, getStatus, StatusCode, type ApiResponse, type Status } from './api'
-import { messages } from './messages'
-import { formatZurichTime } from './zurichTime'
+import { clockIn, clockOut, forgotClockOut, getStatus, StatusCode, type ApiResponse, type Status } from '../shared/api'
+import { messages } from '../shared/messages'
+import { formatZurichTime } from '../shared/zurichTime'
 
 type Props = {
   onSignedOut: (message: string) => void

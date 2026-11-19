@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getMe, type Employee } from './api'
-import { SignedInScreen } from './SignedInScreen'
-import { SignInScreen } from './SignInScreen'
+import { SignedInScreen } from './screens/SignedInScreen'
+import { SignInScreen } from './screens/SignInScreen'
+import { getMe, type Employee } from './shared/api'
 
 function App() {
   const [isCheckingSession, setIsCheckingSession] = useState(true)

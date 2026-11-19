@@ -5,11 +5,11 @@ The employee sees their shifts one full Zurich month at a time, with the month's
 
 ## What's built
 All in `frontend/src/`, no new packages:
-- `MyShiftsTab.tsx`: the month, its total, its shifts, and the arrows.
-- `api.ts`: `getShiftMonths()` and `getShifts(year, month)`.
-- `zurichTime.ts`: `formatMonth` ("November 2026") and `formatDuration` ("38 h 15 min").
-- `messages.ts`: the new messages.
-- `SignedInScreen.tsx`: shows MyShiftsTab on the My shifts tab.
+- `screens/MyShiftsTab.tsx`: the month, its total, its shifts, and the arrows.
+- `shared/api.ts`: `getShiftMonths()` and `getShifts(year, month)`.
+- `shared/zurichTime.ts`: `formatMonth` ("November 2026") and `formatDuration` ("38 h 15 min").
+- `shared/messages.ts`: the new messages.
+- `screens/SignedInScreen.tsx`: shows MyShiftsTab on the My shifts tab.
 - `index.css`: the month row with its arrows.
 
 ## How it works

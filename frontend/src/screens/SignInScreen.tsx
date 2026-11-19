@@ -1,6 +1,6 @@
 import { useState, type SubmitEvent } from 'react'
-import { signIn, StatusCode, type Employee } from './api'
-import { messages } from './messages'
+import { signIn, StatusCode, type Employee } from '../shared/api'
+import { messages } from '../shared/messages'
 
 type Props = {
   message: string

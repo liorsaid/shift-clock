@@ -20,6 +20,7 @@ Shift Clock is a time & attendance system where employees clock in and clock out
 | `backend/ShiftClock.Api/`   | One folder per feature: Time, Data, SignIn, Clock, History                                        |
 | `backend/ShiftClock.Tests/` | Tests, in the same feature folders                                                                |
 | `frontend/`                 | React app                                                                                         |
+| `frontend/src/`             | `screens/` for screens and tabs, `shared/` for the API, messages and time formatting              |
 | `docs/plans/`               | Approved work plans, `NN-short-name.md`                                                           |
 | `docs/claude-log.md`        | Where Claude helped and where I corrected it                                                      |
 | `DECISIONS.md`              | Key decisions and why, edge cases and how they were handled, what was not done, known limitations |

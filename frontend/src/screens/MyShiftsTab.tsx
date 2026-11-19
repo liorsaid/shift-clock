@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
-import { getShiftMonths, getShifts, StatusCode, type MonthTotal, type Shift } from './api'
-import { messages } from './messages'
-import { formatDuration, formatMonth, formatZurichTime } from './zurichTime'
+import { getShiftMonths, getShifts, StatusCode, type MonthTotal, type Shift } from '../shared/api'
+import { messages } from '../shared/messages'
+import { formatDuration, formatMonth, formatZurichTime } from '../shared/zurichTime'
 
 type Props = {
   onSignedOut: (message: string) => void

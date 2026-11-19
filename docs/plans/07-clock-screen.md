@@ -6,12 +6,12 @@ An employee signs in at the kiosk with their number and PIN, sees their status, 
 ## What's built
 All in `frontend/src/`, no new packages:
 - `App.tsx`: shows the sign-in screen or the signed-in screen, and carries a sign-out message to sign-in.
-- `SignInScreen.tsx`: the sign-in form.
-- `SignedInScreen.tsx`: the employee's name, a Sign out button, the Clock and My shifts tabs, the 30-second idle sign-out, and the clock-in/out confirmation.
-- `ClockTab.tsx`: status and the clock buttons.
-- `api.ts`: one small function per endpoint. Each returns the status code and the data.
-- `messages.ts`: all the messages below, in one place.
-- `zurichTime.ts`: formats a time from the backend in Europe/Zurich, for example "Tue 17 Nov, 08:02".
+- `screens/SignInScreen.tsx`: the sign-in form.
+- `screens/SignedInScreen.tsx`: the employee's name, a Sign out button, the Clock and My shifts tabs, the 30-second idle sign-out, and the clock-in/out confirmation.
+- `screens/ClockTab.tsx`: status and the clock buttons.
+- `shared/api.ts`: one small function per endpoint. Each returns the status code and the data.
+- `shared/messages.ts`: all the messages below, in one place.
+- `shared/zurichTime.ts`: formats a time from the backend in Europe/Zurich, for example "Tue 17 Nov, 08:02".
 - `index.css`: simple, large kiosk styling.
 
 ## How it works
