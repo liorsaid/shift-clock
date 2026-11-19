@@ -19,14 +19,17 @@ export function SignedInScreen({ employee, onSignedOut }: Props) {
   const [error, setError] = useState('')
   const [isSigningOut, setIsSigningOut] = useState(false)
 
-  const signOutOrStaySignedIn = useCallback(async () => {
-    setError('')
-    setIsSigningOut(true)
-    const response = await signOut()
-    setIsSigningOut(false)
-    if (response.status === StatusCode.NoContent) onSignedOut('')
-    else setError(messages.somethingWentWrong)
-  }, [onSignedOut])
+  const signOutOrStaySignedIn = useCallback(
+    async (signedOutMessage: string) => {
+      setError('')
+      setIsSigningOut(true)
+      const response = await signOut()
+      setIsSigningOut(false)
+      if (response.status === StatusCode.NoContent) onSignedOut(signedOutMessage)
+      else setError(messages.somethingWentWrong)
+    },
+    [onSignedOut],
+  )
 
   useEffect(() => {
     let idleTimer = 0
@@ -34,7 +37,7 @@ export function SignedInScreen({ employee, onSignedOut }: Props) {
       clearTimeout(idleTimer)
       idleTimer = setTimeout(() => {
         restartIdleTimer()
-        signOutOrStaySignedIn()
+        signOutOrStaySignedIn(messages.signedOutWhenIdle)
       }, IdleSignOutDelayMs)
     }
     restartIdleTimer()
@@ -64,7 +67,7 @@ export function SignedInScreen({ employee, onSignedOut }: Props) {
     <main className="screen">
       <header className="signed-in">
         <span>Signed in as {employee.displayName}</span>
-        <button disabled={isSigningOut} onClick={signOutOrStaySignedIn}>
+        <button disabled={isSigningOut} onClick={() => signOutOrStaySignedIn(messages.signedOut)}>
           Sign out
         </button>
       </header>

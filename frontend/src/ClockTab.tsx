@@ -74,7 +74,7 @@ export function ClockTab({ onSignedOut, onClocked }: Props) {
     const response = await forgotClockOut()
     setIsSending(false)
     if (response.status !== StatusCode.NoContent) {
-      showFailure(response.status, messages.noOpenShift)
+      showFailure(response.status, messages.notClockedIn)
       return
     }
     setMessage(messages.markedMissingClockOut)

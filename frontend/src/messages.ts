@@ -1,5 +1,5 @@
 export const messages = {
-  employeeNumberNotDigits: 'Employee number must contain digits only.',
+  employeeNumberNotDigits: 'Employee number must be digits only.',
   pinNotFourDigits: 'PIN must be 4 digits.',
   wrongNumberOrPin: 'Wrong employee number or PIN.',
   employeeInactive: 'Your account is inactive. Please contact your manager.',
@@ -8,12 +8,12 @@ export const messages = {
   signingOut: 'Signing you out…',
   alreadyClockedIn: "You're already clocked in.",
   notClockedIn: "You're not clocked in.",
-  timeServiceUnavailable: 'The time service is unavailable, so nothing was recorded. Please try again.',
+  timeServiceUnavailable: 'The time service is unavailable. Nothing was recorded. Please try again.',
   confirmForgotClockOut: 'Mark your open shift as missing a clock-out?',
-  markedMissingClockOut:
-    'Your shift is marked as missing a clock-out. Please contact your manager to approve your hours.',
-  noOpenShift: 'You have no open shift.',
+  markedMissingClockOut: 'Shift marked as missing a clock-out. Please contact your manager to approve your hours.',
   sessionEnded: 'Your session has ended. Please sign in again.',
+  signedOut: "You're signed out.",
+  signedOutWhenIdle: 'You were signed out after 30 seconds without activity.',
   somethingWentWrong: 'Something went wrong. Please try again.',
   offShift: 'Off shift',
   onShiftSince: (time: string) => `On shift since ${time}`,

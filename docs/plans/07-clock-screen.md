@@ -5,7 +5,7 @@ An employee signs in at the kiosk with their number and PIN, sees their status, 
 
 ## What's built
 All in `frontend/src/`, no new packages:
-- `App.tsx`: shows the sign-in screen or the signed-in screen, and carries the "session has ended" message to sign-in.
+- `App.tsx`: shows the sign-in screen or the signed-in screen, and carries a sign-out message to sign-in.
 - `SignInScreen.tsx`: the sign-in form.
 - `SignedInScreen.tsx`: the employee's name, a Sign out button, the Clock and My shifts tabs, the 30-second idle sign-out, and the clock-in/out confirmation.
 - `ClockTab.tsx`: status and the clock buttons.
@@ -37,18 +37,20 @@ While a request is running, the buttons are disabled, so a double tap sends once
 
 | Request | Response | What the employee sees |
 |---|---|---|
-| Employee number field | not digits only | "Employee number must contain digits only." |
+| Employee number field | not digits only | "Employee number must be digits only." |
 | PIN field | a non-digit or more than 4 digits, or fewer than 4 when leaving the field | "PIN must be 4 digits." |
 | Sign in | 401 | "Wrong employee number or PIN." |
 | | 403 | "Your account is inactive. Please contact your manager." |
 | Clock In | 200 | "Clocked in at Tue 17 Nov, 08:02." and "Signing you out…", then the sign-in screen |
 | | 409 | "You're already clocked in." Status reloads. |
-| | 503 | "The time service is unavailable, so nothing was recorded. Please try again." |
+| | 503 | "The time service is unavailable. Nothing was recorded. Please try again." |
 | Clock Out | 200 | "Clocked out at Tue 17 Nov, 17:00." and "Signing you out…", then the sign-in screen |
 | | 409 | "You're not clocked in." Status reloads. |
 | | 503 | Same as Clock In 503 |
-| I forgot | 204 | "Your shift is marked as missing a clock-out. Please contact your manager to approve your hours." Status reloads. |
-| | 409 | "You have no open shift." Status reloads. |
+| I forgot | 204 | "Shift marked as missing a clock-out. Please contact your manager to approve your hours." Status reloads. |
+| | 409 | "You're not clocked in." Status reloads. |
+| Sign out | 204 | Sign-in screen with "You're signed out." |
+| 30 seconds idle | 204 | Sign-in screen with "You were signed out after 30 seconds without activity." |
 | Any signed-in request | 401 | Sign-in screen with "Your session has ended. Please sign in again." |
 | Any request | other code or no connection | "Something went wrong. Please try again." |
 
@@ -64,4 +66,4 @@ Manual checks in the browser, with the backend and frontend running and the demo
 8. Clock in, sign in again, use "I forgot": the missing clock-out message, then "Off shift", still signed in.
 9. Double-tap Clock In: one clock-in, no error.
 10. Restart the backend with `$env:TimeApi__Url = 'https://timeapi.invalid/'`, then Clock In: the time service message, still signed in, still off shift.
-11. Wait 30 seconds without touching anything: back to the sign-in screen.
+11. Wait 30 seconds without touching anything: back to the sign-in screen with "You were signed out after 30 seconds without activity."
