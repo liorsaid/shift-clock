@@ -1,6 +1,8 @@
 export type Employee = { employeeNumber: string; displayName: string }
 export type Status = { onShiftSince: string | null }
 export type ClockResult = { clockInAt: string; clockOutAt?: string }
+export type MonthTotal = { year: number; month: number; totalSeconds: number }
+export type Shift = { clockInAt: string; clockOutAt: string | null; isMissingClockOut: boolean }
 export type ApiResponse<T> = { status: number; data?: T }
 
 export const StatusCode = {
@@ -34,3 +36,5 @@ export const getStatus = () => send<Status>('GET', '/api/status')
 export const clockIn = () => send<ClockResult>('POST', '/api/clock-in')
 export const clockOut = () => send<ClockResult>('POST', '/api/clock-out')
 export const forgotClockOut = () => send<void>('POST', '/api/forgot-clock-out')
+export const getShiftMonths = () => send<MonthTotal[]>('GET', '/api/shifts/months')
+export const getShifts = (year: number, month: number) => send<Shift[]>('GET', `/api/shifts?year=${year}&month=${month}`)

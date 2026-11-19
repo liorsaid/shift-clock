@@ -17,4 +17,8 @@ export const messages = {
   somethingWentWrong: 'Something went wrong. Please try again.',
   offShift: 'Off shift',
   onShiftSince: (time: string) => `On shift since ${time}`,
+  noShiftsYet: 'No shifts yet.',
+  monthTotal: (duration: string) => `Total: ${duration}`,
+  missingClockOutInHistory: 'Missing clock-out. Please contact your manager to approve your hours.',
+  stillOnShift: 'On shift',
 }

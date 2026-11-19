@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { signOut, StatusCode, type Employee } from './api'
 import { ClockTab } from './ClockTab'
 import { messages } from './messages'
+import { MyShiftsTab } from './MyShiftsTab'
 
 type Props = {
   employee: Employee
@@ -79,6 +80,7 @@ export function SignedInScreen({ employee, onSignedOut }: Props) {
         </button>
       </nav>
       {tab === 'clock' && <ClockTab onSignedOut={onSignedOut} onClocked={setConfirmation} />}
+      {tab === 'myShifts' && <MyShiftsTab onSignedOut={onSignedOut} />}
     </main>
   )
 }

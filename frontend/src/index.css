@@ -15,7 +15,8 @@ input {
 
 form,
 label,
-.clock {
+.clock,
+.my-shifts {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -42,9 +43,11 @@ label,
 }
 
 .signed-in,
-.tabs {
+.tabs,
+.month {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .tabs button {
