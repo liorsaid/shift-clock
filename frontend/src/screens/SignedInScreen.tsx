@@ -53,6 +53,14 @@ export function SignedInScreen({ employee, onSignedOut }: Props) {
     return () => clearTimeout(signOutTimer)
   }, [confirmation, onSignedOut])
 
+  function handleSignOut() {
+    signOutOrStaySignedIn(() => setConfirmation({ message: messages.signedOut }))
+  }
+
+  function showClockedConfirmation(message: string) {
+    setConfirmation({ message, note: messages.signingOut })
+  }
+
   if (confirmation) {
     return (
       <main className="screen">
@@ -66,7 +74,7 @@ export function SignedInScreen({ employee, onSignedOut }: Props) {
     <main className="screen">
       <header className="signed-in">
         <span>Signed in as {employee.displayName}</span>
-        <button disabled={isSigningOut} onClick={() => signOutOrStaySignedIn(() => setConfirmation({ message: messages.signedOut }))}>
+        <button disabled={isSigningOut} onClick={handleSignOut}>
           Sign out
         </button>
       </header>
@@ -81,7 +89,7 @@ export function SignedInScreen({ employee, onSignedOut }: Props) {
           My shifts
         </button>
       </nav>
-      {tab === 'clock' && <ClockTab onSignedOut={onSignedOut} onClocked={(message) => setConfirmation({ message, note: messages.signingOut })} />}
+      {tab === 'clock' && <ClockTab onSignedOut={onSignedOut} onClocked={showClockedConfirmation} />}
       {tab === 'myShifts' && <MyShiftsTab onSignedOut={onSignedOut} />}
     </main>
   )
