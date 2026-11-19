@@ -7,7 +7,7 @@ An employee signs in at the kiosk with their number and PIN, sees their status, 
 All in `frontend/src/`, no new packages:
 - `App.tsx`: shows the sign-in screen or the signed-in screen, and carries a sign-out message to sign-in.
 - `screens/SignInScreen.tsx`: the sign-in form.
-- `screens/SignedInScreen.tsx`: the employee's name, a Sign out button, the Clock and My shifts tabs, the 30-second idle sign-out, and the clock-in/out confirmation.
+- `screens/SignedInScreen.tsx`: the employee's name, a Sign out button, the Clock and My shifts tabs, the 30-second idle sign-out, and the 3-second confirmation after Clock In, Clock Out or Sign out.
 - `screens/ClockTab.tsx`: status and the clock buttons.
 - `shared/api.ts`: one small function per endpoint. Each returns the status code and the data.
 - `shared/messages.ts`: all the messages below, in one place.
@@ -30,7 +30,7 @@ After a successful Clock In or Clock Out, the screen shows only "Clocked in at T
 While a request is running, the buttons are disabled, so a double tap sends once. Times come only from the backend and are shown in Zurich time; the browser clock is never read.
 
 **When the app returns to the sign-in screen.** Only when the employee is really signed out on the server:
-- Returns after: a successful Clock In or Clock Out (after its 3-second confirmation), Sign out, 30 seconds idle, and any 401.
+- Returns after: a successful Clock In, Clock Out or Sign out (each after its 3-second confirmation), 30 seconds idle, and any 401.
 - Stays signed in after: "I forgot", a 409, a 503, and a failed sign-out (with "Something went wrong").
 
 **Messages for each response.** All text lives in the frontend. Errors show in red.
@@ -49,7 +49,7 @@ While a request is running, the buttons are disabled, so a double tap sends once
 | | 503 | Same as Clock In 503 |
 | I forgot | 204 | "Shift marked as missing a clock-out. Please contact your manager to approve your hours." Status reloads. |
 | | 409 | "You're not clocked in." Status reloads. |
-| Sign out | 204 | Sign-in screen with "You're signed out." |
+| Sign out | 204 | Only "You're signed out." for 3 seconds, then an empty sign-in screen |
 | 30 seconds idle | 204 | Sign-in screen with "You were signed out after 30 seconds without activity." |
 | Any signed-in request | 401 | Sign-in screen with "Your session has ended. Please sign in again." |
 | Any request | other code or no connection | "Something went wrong. Please try again." |
