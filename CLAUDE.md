@@ -48,6 +48,7 @@ Run from the repo root.
 ## MUST NOT
 
 - Never read a local clock to record a clock event (for example `DateTime.Now`, `Date.now()`, `GETDATE()`).
+- Edit code only with the edit tool, so the clock hook checks every change.
 - No secrets in the repo (keys, passwords, connection strings with credentials).
 - Do not add features that are not in the approved plan.
 - Do not modify, refactor or reformat code unrelated to the current task.
