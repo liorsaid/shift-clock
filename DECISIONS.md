@@ -38,7 +38,7 @@
 
 ## 4. Known Limitations
 - **One time service.** If TimeAPI.io is down, nobody can clock in or out.
-- **The recorded time is when the API answered,** up to 3 seconds after the click.
+- **The recorded time is when the API answered,** up to 10 seconds after the click.
 - **PINs can be guessed.** There's no limit on wrong attempts.
 - **Idle sign-out runs in the browser only.**
 - **Times on screen show no offset,** so on the autumn night, the two 02:30s look the same. The stored times and totals are still exact.

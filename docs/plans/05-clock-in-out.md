@@ -31,4 +31,4 @@ A signed-in employee can clock in, clock out, or mark a forgotten clock-out. Tim
 - Two clock-ins at once, and two clock-outs at once: one 200, one 409.
 - A clock-out in the repeated autumn hour that reads earlier than the clock-in is accepted.
 - Only a one-open-shift violation becomes 409.
-- The real app's time-source HttpClient has a 3-second timeout.
+- The real app's time-source HttpClient has a 10-second timeout.

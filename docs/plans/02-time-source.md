@@ -7,12 +7,12 @@ One component that asks TimeAPI.io for the current Zurich time, and either retur
 - ITimeSource: GetZurichNowAsync returns a DateTimeOffset with the Zurich offset.
 - TimeApiTimeSource: calls TimeAPI.io through a typed HttpClient.
 - TimeSourceUnavailableException: the one error for every failure. Step 6 maps it to 503.
-- TimeApiOptions: the URL and the 3s timeout, from appsettings.json, checked at startup.
+- TimeApiOptions: the URL and the 10s timeout, from appsettings.json, checked at startup.
 - Tests: StubHttpMessageHandler (a fake network), FakeTimeSource (for step 6) and TimeApiTimeSourceTests.
 
 ## How it works
 A response is accepted only if:
-1. The HTTP call succeeds within 3 seconds.
+1. The HTTP call succeeds within 10 seconds.
 2. The JSON is valid and has date_time, timezone and utc_offset_seconds.
 3. timezone is exactly Europe/Zurich.
 4. date_time ends with an explicit offset. Without one, .NET would fill in the machine's offset.

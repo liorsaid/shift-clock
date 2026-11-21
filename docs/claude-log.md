@@ -54,3 +54,7 @@ The code-reviewer subagent caught that when sign-out failed on the server, the s
 ## 2026-11-18 · Edits through PowerShell
 
 Claude changed code files with PowerShell string replacement, which skips the clock hook. I stopped it and added a rule to CLAUDE.md: code changes go only through the edit tool, so the hook checks every one.
+
+## 2026-11-21 · Time API timeout
+
+Claude planned a 3-second timeout for the time API. In a clean install test that followed the README, I found that TimeAPI.io answers in 3 to 6 seconds from here, so most clock-ins failed. I raised it to 10 seconds.

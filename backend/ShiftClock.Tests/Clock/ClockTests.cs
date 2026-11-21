@@ -229,13 +229,13 @@ public class ClockTests : IClassFixture<ShiftClockApp>
     }
 
     [Fact]
-    public void Gives_the_time_api_a_three_second_timeout()
+    public void Gives_the_time_api_a_ten_second_timeout()
     {
         var clients = app.Services.GetRequiredService<IHttpClientFactory>();
 
         var timeApiClient = clients.CreateClient(nameof(ITimeSource));
 
-        Assert.Equal(TimeSpan.FromSeconds(3), timeApiClient.Timeout);
+        Assert.Equal(TimeSpan.FromSeconds(10), timeApiClient.Timeout);
     }
 
     private async Task<HttpClient> SignedInClientAsync(Employee employee)

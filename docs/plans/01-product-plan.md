@@ -10,7 +10,7 @@
 ## Time API
 - `https://timeapi.io/api/v1/time/current/zone?timezone=Europe/Zurich`, returns the time with an explicit offset.
 - Called by the server on each clock event only, through `ITimeSource`.
-- Validated against Zurich time zone rules. 3s timeout, no retry. Any failure → 503, nothing recorded.
+- Validated against Zurich time zone rules. 10s timeout, no retry. Any failure → 503, nothing recorded.
 
 ## Data model
 - **Employee:** Id, EmployeeNumber (unique), DisplayName, PinHash, IsActive.
